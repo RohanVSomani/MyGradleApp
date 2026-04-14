@@ -31,6 +31,6 @@ dependencies {
 mainClassName = 'App'
 task Message{
 	doLast{
-	println("Good Morning");
+	println "Good Morning" ;
 	}
 }
