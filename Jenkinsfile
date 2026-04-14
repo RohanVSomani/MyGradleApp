@@ -1,10 +1,6 @@
 pipeline {
-    agent any  // Use any available agent
+    agent any
 
-    tools {
-        gradle 'gradle'  // Ensure this matches the name configured in Jenkins
-        jdk 'JDK'
-    }
     stages {
         stage('Checkout') {
             steps {
@@ -14,35 +10,18 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'gradle build'  // Run Gradle build
+                sh 'chmod +x gradlew'
+                sh './gradlew build'
             }
         }
-
-        stage('Test') {
-            steps {
-                sh 'gradle test'  // Run unit tests
-            }
-        }
-
-        
-        
-       
-        stage('Run Application') {
-            steps {
-                // Start the JAR application
-                sh 'gradle run'
-            }
-        }
-
-        
     }
 
     post {
         success {
-            echo 'Build and deployment successful!'
+            echo 'Build Successful'
         }
         failure {
-            echo 'Build failed!'
+            echo 'Build Failed'
         }
     }
 }
